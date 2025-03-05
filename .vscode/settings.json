@@ -1,0 +1,32 @@
+{
+  "files.autoSave": "off",
+  "editor.formatOnSave": true, // Esto habilita el formato automático al guardar
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always", // Ejecuta todas las correcciones al guardar (incluyendo las de ESLint)
+    "source.organizeImports": "always" // Organiza las importaciones automáticamente
+  },
+  // Configuración para JavaScript
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // Usa Prettier como formateador por defecto
+  },
+  // Configuración para JavaScript React
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // Usa Prettier como formateador por defecto
+  },
+  // Configuración para TypeScript
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // Usa Prettier como formateador por defecto
+  },
+  // Configuración para TypeScript React
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // Usa Prettier como formateador por defecto
+  },
+  // Configuración de ESLint
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"], // Habilita ESLint para estos lenguajes
+  "eslint.alwaysShowStatus": true, // Muestra el estado de ESLint en la barra de estado
+  "eslint.format.enable": true, // Habilita el formato usando ESLint en lugar de Prettier cuando ESLint esté configurado
+  "eslint.workingDirectories": [{ "mode": "auto" }], // Configuración para que ESLint detecte automáticamente las carpetas de trabajo
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Asegura que Prettier sea el formateador por defecto
+  "prettier.requireConfig": true, // Solo usa Prettier si existe un archivo de configuración
+  "prettier.eslintIntegration": true // Usa Prettier junto con ESLint
+}
