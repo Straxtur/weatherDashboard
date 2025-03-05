@@ -1,0 +1,7 @@
+{
+  "*.{js,jsx,ts,tsx}": [
+    "prettier --write --loglevel warn",
+    "eslint --fix --ext .ts,.tsx,.js,.jsx --color"
+  ],
+  "*.{json,css,scss,md,html}": ["prettier --write --loglevel warn"]
+}
