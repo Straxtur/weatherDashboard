@@ -32,7 +32,7 @@ export default [
       ...tseslint.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-
+      "tsx-quotes": ["error", "prefer-double"],
       quotes: ["error", "double"],
       "jsx-quotes": ["error", "prefer-double"],
     },
