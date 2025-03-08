@@ -1,13 +1,16 @@
+import Weather from "./components/weather/Weather"
+import WeatherChart from "./components/WeatherChart/WeatherChart"
+import WeatherList from "./components/WeatherList/WeatherList"
 import Layout from "./Layouts/Layout"
 
 const App = () => {
   return (
     <Layout>
-      <section className="col-span-1 rounded-3xl p-2.5 glass-card">option 1</section>
+      <Weather />
+      
+      <WeatherList />
 
-      <section className="col-span-1 rounded-3xl p-2.5 glass-card">option 2</section>
-
-      <section className="md:col-span-2 rounded-3xl p-2.5 glass-card">option 3</section>
+      <WeatherChart />
     </Layout>
   )
 }
