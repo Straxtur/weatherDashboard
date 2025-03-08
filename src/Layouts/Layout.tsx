@@ -5,8 +5,15 @@ interface Props {
 }
 
 const Layout: React.FC<Props> = ({ children }) => {
+  const bgImage = "bgImages/cyber-city.jpg"
   return (
-    <main id="layout" className="w-full h-screen overflow-x-hidden grid md:grid-cols-2 p-4 gap-4">
+    <main
+      id="layout"
+      className="grid h-screen w-full gap-4 overflow-x-hidden p-4 md:grid-cols-2"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+      }}
+    >
       {children}
     </main>
   )
