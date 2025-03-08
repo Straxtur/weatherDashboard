@@ -36,5 +36,13 @@ export default [
       quotes: ["error", "double"],
       "jsx-quotes": ["error", "prefer-double"],
     },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          // Configuración opcional: especifica el archivo tsconfig si no está en la raíz del proyecto
+          project: './tsconfig.json',
+        },
+      },
+    },
   },
 ]
