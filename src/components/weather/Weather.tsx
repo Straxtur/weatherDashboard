@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import weather from "../../services/weather"
 import CaretLeft from "../icons/CaretLeft"
 import CaretRight from "../icons/CaretRight"
 import WeatherCarousel from "./WeatherCarousel"
@@ -63,6 +64,52 @@ const Weather = () => {
     },
   ]
   const [weatherSelected, setWeatherSelected] = useState(0)
+
+  useEffect(() => {
+    const p = async () => {
+      const locate = "Cantabria"
+      try {
+        const data = await weather.getWeatherAboutCity({ locate })
+
+        console.log(data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    p()
+  }, [])
+
+  useEffect(() => {
+    const p = async () => {
+      const locate = "murcia"
+      try {
+        const data = await weather.getMatches({ locate })
+
+        console.log(data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    p()
+  }, [])
+
+  useEffect(() => {
+    const p = async () => {
+      const locate = "murcia"
+      const days = 3
+      try {
+        const data = await weather.getWeatherDetails({ locate, days })
+
+        console.log(data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    p()
+  }, [])
 
   // Navegación circular
   const handlePrev = () => {
