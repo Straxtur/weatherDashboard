@@ -7,7 +7,7 @@ const App = () => {
   return (
     <Layout>
       <Weather />
-      
+
       <WeatherList />
 
       <WeatherChart />
