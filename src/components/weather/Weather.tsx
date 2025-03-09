@@ -1,4 +1,6 @@
 import { useState } from "react"
+import CaretLeft from "../icons/CaretLeft"
+import CaretRight from "../icons/CaretRight"
 import WeatherCarousel from "./WeatherCarousel"
 import WeatherDetails from "./WeatherDetails"
 
@@ -79,9 +81,12 @@ const Weather = () => {
         setWeatherSelected={setWeatherSelected}
       />
 
-      <div className="flex w-full justify-between">
-        <button onClick={() => handlePrev()} className="cursor-pointer text-2xl text-white">
-          {"<-"}
+      <div className="flex w-full items-center justify-between">
+        <button
+          onClick={() => handlePrev()}
+          className="cursor-pointer rounded-full text-2xl text-white transition-transform duration-200 ease-in-out hover:scale-125 hover:bg-white/20 active:scale-90"
+        >
+          <CaretLeft width="25px" height="25px" />
         </button>
 
         <div className="glass-card flex h-fit w-fit flex-col items-center justify-between gap-4 rounded-3xl px-2.5 py-3">
@@ -89,8 +94,11 @@ const Weather = () => {
           <p className="text-xl text-white">{weathers[weatherSelected].description}</p>
         </div>
 
-        <button onClick={() => handleNext()} className="cursor-pointer text-2xl text-white">
-          {"->"}
+        <button
+          onClick={() => handleNext()}
+          className="cursor-pointer rounded-full text-2xl text-white transition-transform duration-200 ease-in-out hover:scale-125 hover:bg-white/20 active:scale-90"
+        >
+          <CaretRight width="25px" height="25px" />
         </button>
       </div>
     </section>
