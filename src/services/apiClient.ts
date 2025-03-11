@@ -1,6 +1,5 @@
 import axios from "axios"
-
-const BASE_URL = import.meta.env.VITE_WEATHER_BASE_URL
+import { BASE_URL } from "../utils/constants"
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
