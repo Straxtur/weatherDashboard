@@ -1,4 +1,5 @@
 import { MatchesProps, WeatherDetailsProps, WeatherProps } from "../../types/api/weather"
+import { CustomError } from "../../types/errors/errors"
 import { WEATHER_KEY } from "../../utils/constants"
 import apiClient from "../apiClient"
 
@@ -15,7 +16,7 @@ const weather = {
     } catch (error) {
       if (process.env.NODE_ENV === "development") {
         console.error("Weather API Error: ", {
-          error: (error as any)?.technicalMessage, // mensaje de error editado
+          error: (error as CustomError)?.technicalMessage, // mensaje de error editado
           request: { locate },
           stack: error instanceof Error ? error.stack : null,
         })
@@ -38,14 +39,7 @@ const weather = {
     } catch (error) {
       if (process.env.NODE_ENV === "development") {
         console.error("Weather API Error: ", {
-          error: (error as any)?.technicalMessage,
-          request: { locate },
-          stack: error instanceof Error ? error.stack : null,
-        })
-      }
-      if (process.env.NODE_ENV === "development") {
-        console.error("Weather API Error: ", {
-          error: (error as any)?.technicalMessage,
+          error: (error as CustomError)?.technicalMessage,
           request: { locate },
           stack: error instanceof Error ? error.stack : null,
         })
@@ -69,7 +63,7 @@ const weather = {
     } catch (error) {
       if (process.env.NODE_ENV === "development") {
         console.error("Weather API Error: ", {
-          error: (error as any)?.technicalMessage,
+          error: (error as CustomError)?.technicalMessage,
           request: { locate, days },
           stack: error instanceof Error ? error.stack : null,
         })
