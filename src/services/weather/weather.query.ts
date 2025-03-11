@@ -7,6 +7,8 @@ export const useMatchCity = (location: MatchesProps) => {
     queryKey: ["weather", location],
     queryFn: () => weather.getMatches(location),
     enabled: !!location,
+    retry: 1,
+    refetchOnWindowFocus: false,
   })
 }
 
@@ -15,5 +17,7 @@ export const useWeather = (location: MatchesProps) => {
     queryKey: ["weather", location],
     queryFn: () => weather.getWeatherAboutCity(location),
     enabled: !!location,
+    retry: 1,
+    refetchOnWindowFocus: false,
   })
 }
