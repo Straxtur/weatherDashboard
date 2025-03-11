@@ -1,17 +1,6 @@
-import apiClient from "./apiClient"
-
-const WEATHER_KEY = import.meta.env.VITE_WEATHER_API_KEY
-
-interface Props {
-  locate: string
-}
-
-interface MatchesProps extends Props {}
-interface WeatherProps extends Props {}
-interface WeatherDetailsProps extends Props {
-  days: number
-}
-
+import { MatchesProps, WeatherDetailsProps, WeatherProps } from "../../types/api/weather"
+import { WEATHER_KEY } from "../../utils/constants"
+import apiClient from "../apiClient"
 
 const weather = {
   getMatches: async ({ locate }: MatchesProps) => {

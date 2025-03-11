@@ -1,4 +1,5 @@
 import js from "@eslint/js"
+import pluginQuery from "@tanstack/eslint-plugin-query"
 import tseslint from "@typescript-eslint/eslint-plugin"
 import tsParser from "@typescript-eslint/parser"
 import reactHooks from "eslint-plugin-react-hooks"
@@ -26,6 +27,7 @@ export default [
       "@typescript-eslint": tseslint,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
+      "@tanstack/query": pluginQuery,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -35,12 +37,13 @@ export default [
       "tsx-quotes": ["error", "prefer-double"],
       quotes: ["error", "double"],
       "jsx-quotes": ["error", "prefer-double"],
+      "@tanstack/query/exhaustive-deps": "error",
     },
     settings: {
-      'import/resolver': {
+      "import/resolver": {
         typescript: {
           // Configuración opcional: especifica el archivo tsconfig si no está en la raíz del proyecto
-          project: './tsconfig.json',
+          project: "./tsconfig.json",
         },
       },
     },
