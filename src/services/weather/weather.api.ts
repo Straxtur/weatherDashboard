@@ -13,7 +13,13 @@ const weather = {
       })
       return response.data
     } catch (error) {
-      console.error("Error al obtener el clima:", error)
+      if (process.env.NODE_ENV === "development") {
+        console.error("Weather API Error: ", {
+          error: (error as any)?.technicalMessage, // mensaje de error editado
+          request: { locate },
+          stack: error instanceof Error ? error.stack : null,
+        })
+      }
       throw error
     }
   },
@@ -30,7 +36,20 @@ const weather = {
       })
       return response.data
     } catch (error) {
-      console.error("Error al obtener el clima:", error)
+      if (process.env.NODE_ENV === "development") {
+        console.error("Weather API Error: ", {
+          error: (error as any)?.technicalMessage,
+          request: { locate },
+          stack: error instanceof Error ? error.stack : null,
+        })
+      }
+      if (process.env.NODE_ENV === "development") {
+        console.error("Weather API Error: ", {
+          error: (error as any)?.technicalMessage,
+          request: { locate },
+          stack: error instanceof Error ? error.stack : null,
+        })
+      }
       throw error
     }
   },
@@ -48,7 +67,13 @@ const weather = {
       })
       return response.data
     } catch (error) {
-      console.error("Error al obtener el clima:", error)
+      if (process.env.NODE_ENV === "development") {
+        console.error("Weather API Error: ", {
+          error: (error as any)?.technicalMessage,
+          request: { locate, days },
+          stack: error instanceof Error ? error.stack : null,
+        })
+      }
       throw error
     }
   },

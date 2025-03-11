@@ -1,7 +1,7 @@
-import { useMatchCity } from "../../services/weather/weather.query"
+import { useWeather } from "../../services/weather/weather.query"
 
 const WeatherList = () => {
-  const { data, error, isLoading } = useMatchCity({ locate: "Murcia" })
+  const { data, error, isLoading } = useWeather({ locate: "Murcia" })
 
   if (error) {
     console.error("a ocurrido un error:", error)
