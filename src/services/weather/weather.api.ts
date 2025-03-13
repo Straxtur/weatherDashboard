@@ -1,10 +1,10 @@
-import { MatchesProps, WeatherDetailsProps, WeatherProps } from "../../types/api/weather"
+import { WeatherDetailsProps, WeatherProps } from "../../types/api/weather"
 import { CustomError } from "../../types/errors/errors"
 import { WEATHER_KEY } from "../../utils/constants"
 import apiClient from "../apiClient"
 
 const weather = {
-  getMatches: async ({ locate }: MatchesProps) => {
+  getMatches: async (locate: string) => {
     try {
       const response = await apiClient.get(`/search.json`, {
         params: {
