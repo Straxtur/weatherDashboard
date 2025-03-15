@@ -29,7 +29,7 @@ const FormLocation = ({ setLocate }: FormLocationProps) => {
             className="bg-black/30 px-3 py-2 text-lg"
           />
         </div>
-        <button className="ransition-transform h-fit w-full cursor-pointer rounded-lg bg-black/80 px-3 py-1 text-white duration-200 ease-in-out hover:scale-105 active:scale-95">
+        <button className="h-fit w-full cursor-pointer rounded-lg bg-black/80 px-3 py-1 text-white transition-transform duration-200 ease-in-out hover:scale-105 active:scale-95">
           Buscar
         </button>
       </div>
