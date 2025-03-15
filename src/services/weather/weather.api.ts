@@ -9,6 +9,7 @@ const weather = {
       const response = await apiClient.get(`/search.json`, {
         params: {
           key: WEATHER_KEY,
+          lang: "es",
           q: locate,
         },
       })
