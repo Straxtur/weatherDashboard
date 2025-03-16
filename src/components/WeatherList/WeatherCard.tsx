@@ -15,8 +15,6 @@ const WeatherCard = ({ weather, handledRemoveWeather }: Props) => {
     [weather.info.condition.text]
   )
 
-  console.log(weather)
-
   return (
     <div
       className={`bg-${weatherType} flex h-full w-full items-center justify-between gap-4 rounded-2xl`}
