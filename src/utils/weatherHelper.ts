@@ -68,5 +68,10 @@ export function classifyWeather(weather: string) {
       return type
     }
   }
-  return "unknown"
+  return "cloudy"
+}
+
+export function formatearFecha(fechaISO: string) {
+  const [year, month, day] = fechaISO.split("-")
+  return `${day}-${month}-${year}`
 }

@@ -1,6 +1,5 @@
 import { motion } from "motion/react"
 import { useRef, useState } from "react"
-import useLocalStorage from "../../hooks/common/useLocalStorage"
 import { useWeather } from "../../services/weather/weather.query"
 import { WeatherUb } from "../../types/api/weather"
 import Add from "../icons/Add"
@@ -8,20 +7,21 @@ import Modal from "../shared/Modal"
 import ModalLocation from "./ModalLocation"
 import WeatherCard from "./WeatherCard"
 
-const WeatherList = () => {
+interface WeatherListProps {
+  weathers: WeatherUb[]
+  setWeathers: (newValue: WeatherUb[]) => void
+  handledSelectWeather: (name: string) => void
+}
+
+const WeatherList = ({ weathers, setWeathers, handledSelectWeather }: WeatherListProps) => {
   const containerRef = useRef(null)
   const [locate, setLocate] = useState("")
   const [isOpen, setIsOpen] = useState(false)
-  const [weathers, setWeathers] = useLocalStorage<WeatherUb[]>("weathersUb", [])
 
-  const { data, isError, isLoading } = useWeather(weathers)
+  const { data, isError } = useWeather(weathers)
 
   if (isError) {
     return <h1>Error {isError}</h1>
-  }
-
-  if (isLoading) {
-    return <h1>Loading {isLoading}</h1>
   }
 
   const handleOpenModal = () => {
@@ -63,7 +63,8 @@ const WeatherList = () => {
       >
         {data?.map((weather, index) => (
           <motion.div
-            key={weather?.location.name}
+            onClick={() => handledSelectWeather(weather?.location.name)}
+            key={index}
             className="w-full"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

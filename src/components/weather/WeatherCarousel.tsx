@@ -1,26 +1,42 @@
 import { motion } from "motion/react"
 import { useEffect, useState } from "react"
+import { info, WeatherUb } from "../../types/api/weather"
+import { classifyWeather, formatearFecha, renderIcon } from "../../utils/weatherHelper"
 
-type Weather = {
-  id: number
-  country: string
-  city: string
-  weather: string
-  temperature: string
-  wind: string
-  humedad: string
-  sol: string
-  description: string
+interface forecast {
+  forecastday: {
+    date: string
+    day: info
+    hour: {
+      condition: {
+        text: string
+        code: number
+      }
+      temp_c: number
+      wind_kph: number
+      humidity: number
+      time: string
+    }[]
+  }[]
+}
+
+interface Weather {
+  current: info
+  forecast: forecast
+  location: WeatherUb
 }
 
 interface Props {
-  weathers: Weather[]
+  weathers: Weather
   weatherSelected: number
   setWeatherSelected: React.Dispatch<React.SetStateAction<number>>
 }
 
 const WeatherCarousel: React.FC<Props> = ({ weathers, weatherSelected, setWeatherSelected }) => {
   const [visibleCount, setVisibleCount] = useState(3)
+
+  const foreCast = weathers.forecast.forecastday
+  const location = weathers.location
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,11 +57,12 @@ const WeatherCarousel: React.FC<Props> = ({ weathers, weatherSelected, setWeathe
   }, [])
 
   const half = Math.floor(visibleCount / 2)
+
   // Calcula un subconjunto de elementos alrededor del seleccionado de forma circular
   const displayedWeathers = []
   for (let offset = -half; offset <= half; offset++) {
-    const index = (weatherSelected + offset + weathers.length) % weathers.length
-    displayedWeathers.push({ weather: weathers[index], offset })
+    const index = (weatherSelected + offset + foreCast.length) % foreCast.length
+    displayedWeathers.push({ weather: foreCast[index], offset })
   }
 
   // Función que retorna las variantes de animación según la posición (offset) respecto al centro
@@ -74,21 +91,28 @@ const WeatherCarousel: React.FC<Props> = ({ weathers, weatherSelected, setWeathe
     <div className="flex h-fit w-full items-end justify-center space-x-5 overflow-x-hidden p-5">
       {displayedWeathers.map(({ weather, offset }) => (
         <motion.div
-          key={weather.id}
+          key={weather.date}
           className="flex-shrink-0 cursor-pointer"
           onClick={() => {
             if (offset !== 0) {
-              setWeatherSelected((prev) => (prev + offset + weathers.length) % weathers.length)
+              setWeatherSelected((prev) => (prev + offset + foreCast.length) % foreCast.length)
             }
           }}
           animate={getCardVariant(offset)}
           transition={{ duration: 0.3 }}
         >
-          <div className="glass-card flex h-[390px] flex-col items-center justify-center gap-4 rounded-3xl px-2">
-            <h2 className="text-4xl text-white">{weather.city}</h2>
-            <h3 className="text-3xl text-white">{weather.country}</h3>
-            <img width="189px" height="186px" src={weather.weather} alt="sol" />
-            <span className="text-3xl text-white">{weather.temperature}ºC</span>
+          <div
+            className={`bg-${classifyWeather(weather.day.condition.text)} flex h-[390px] flex-col items-center justify-center gap-4 rounded-3xl px-2`}
+          >
+            <h2 className="text-4xl text-white">{location.name}</h2>
+            <h3 className="text-xl text-white">{formatearFecha(weather.date)}</h3>
+            <img
+              width="189px"
+              height="186px"
+              src={renderIcon(weather.day.condition.code)}
+              alt={weather.day.condition.text}
+            />
+            <span className="text-3xl text-white">{weather.day.avgtemp_c}ºC</span>
           </div>
         </motion.div>
       ))}
