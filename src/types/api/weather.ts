@@ -19,3 +19,16 @@ export interface WeatherUb {
   region: number
   url: string
 }
+
+export interface weatherDetails {
+  location: WeatherUb
+  info: {
+    condition: {
+      text: string
+      code: number
+    }
+    temp_c: number
+    wind_kph: number
+    humidity: number
+  }
+}

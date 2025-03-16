@@ -1,5 +1,6 @@
 import { motion } from "motion/react"
 import { useRef, useState } from "react"
+import { useWeather } from "../../services/weather/weather.query"
 import { WeatherUb } from "../../types/api/weather"
 import Add from "../icons/Add"
 import Modal from "../shared/Modal"
@@ -12,13 +13,23 @@ const WeatherList = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [weathers, setWeathers] = useState<WeatherUb[] | []>([])
 
+  const { data, isError, isLoading } = useWeather(weathers)
+
+  if (isError) {
+    return <h1>Error {isError}</h1>
+  }
+
+  if (isLoading) {
+    return <h1>Loading {isLoading}</h1>
+  }
+
   const handleOpenModal = () => {
     setIsOpen(true)
   }
 
   const handleCloseModal = () => {
-    setLocate("")
     setIsOpen(false)
+    setLocate("")
   }
 
   const handledAddWeather = (weather: WeatherUb) => {
@@ -26,10 +37,12 @@ const WeatherList = () => {
 
     const newWeathers = [...weathers, weather]
     setWeathers(newWeathers)
+    setIsOpen(false)
+    setLocate("")
   }
 
-  const handledRemoveWeather = (weatherId: number) => {
-    const newList = weathers.filter((weather) => weather.id !== weatherId)
+  const handledRemoveWeather = (name: string) => {
+    const newList = weathers.filter((weather) => weather.name !== name)
     setWeathers(newList)
   }
 
@@ -47,9 +60,9 @@ const WeatherList = () => {
         ref={containerRef}
         className="flex h-[300px] max-h-[700px] w-full flex-col items-start justify-start gap-4 overflow-y-scroll rounded-3xl p-2.5 text-white md:h-full"
       >
-        {weathers?.map((weather, index) => (
+        {data?.map((weather, index) => (
           <motion.div
-            key={weather.id}
+            key={weather?.location.name}
             className="w-full"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,7 +71,9 @@ const WeatherList = () => {
               delay: index * 0.2,
             }}
           >
-            <WeatherCard weather={weather} handledRemoveWeather={handledRemoveWeather} />
+            {weather && (
+              <WeatherCard weather={weather} handledRemoveWeather={handledRemoveWeather} />
+            )}
           </motion.div>
         ))}
       </div>
