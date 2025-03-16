@@ -15,13 +15,18 @@ const WeatherCard = ({ weather, handledRemoveWeather }: Props) => {
     [weather.info.condition.text]
   )
 
+  console.log(weather)
+
   return (
     <div
-      className={`bg-${weatherType} flex h-full w-full items-center justify-between rounded-2xl`}
+      className={`bg-${weatherType} flex h-full w-full items-center justify-between gap-4 rounded-2xl`}
     >
-      <div className="flex h-full w-full items-start gap-2.5">
+      <div className="rever flex h-full w-full flex-col-reverse items-start gap-2.5 px-2 sm:flex-row">
         <img width="100px" height="100px" src={renderIcon(weather.info.condition.code)} alt="sol" />
-        <span className="pt-3 text-xl">{weather.info.temp_c}ºC</span>
+        <div className="flex flex-col">
+          <span className="hidden pt-3 text-lg sm:inline">Actualmente</span>
+          <span className="pt-3 text-xl">{weather.info.temp_c}ºC</span>
+        </div>
       </div>
 
       <div className="flex h-full w-full flex-col items-end justify-between p-2">
@@ -31,9 +36,13 @@ const WeatherCard = ({ weather, handledRemoveWeather }: Props) => {
         >
           <Cross width="20" height="20" color="white" />
         </button>
-        <span>
-          {weather.location.name}, {weather.location.region}, {weather.location.country}
-        </span>
+        <div className="flex-col items-end justify-end">
+          <span className="line-clamp-1 text-end">{weather.location.name}</span>
+          <span className="line-clamp-1 hidden text-end lg:inline">{weather.location.region}</span>
+          <span className="line-clamp-1 hidden text-end lg:inline">
+            , {weather.location.country}
+          </span>
+        </div>
       </div>
     </div>
   )
