@@ -1,5 +1,6 @@
 import { motion } from "motion/react"
 import { useRef, useState } from "react"
+import useLocalStorage from "../../hooks/common/useLocalStorage"
 import { useWeather } from "../../services/weather/weather.query"
 import { WeatherUb } from "../../types/api/weather"
 import Add from "../icons/Add"
@@ -11,7 +12,7 @@ const WeatherList = () => {
   const containerRef = useRef(null)
   const [locate, setLocate] = useState("")
   const [isOpen, setIsOpen] = useState(false)
-  const [weathers, setWeathers] = useState<WeatherUb[] | []>([])
+  const [weathers, setWeathers] = useLocalStorage<WeatherUb[]>("weathersUb", [])
 
   const { data, isError, isLoading } = useWeather(weathers)
 
