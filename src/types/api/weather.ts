@@ -22,13 +22,19 @@ export interface WeatherUb {
 
 export interface weatherDetails {
   location: WeatherUb
-  info: {
-    condition: {
-      text: string
-      code: number
-    }
-    temp_c: number
-    wind_kph: number
-    humidity: number
+  info: info
+}
+
+export interface info {
+  condition: {
+    text: string
+    code: number
   }
+  temp_c: number
+  wind_kph: number
+  humidity: number
+  avgtemp_c: number
+  maxwind_kph: number
+  maxtemp_c: number
+  mintemp_c: number
 }

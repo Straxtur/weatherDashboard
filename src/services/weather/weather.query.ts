@@ -36,3 +36,14 @@ export const useWeather = (locations: WeatherUb[]) => {
 
   return weathers
 }
+
+export const useWeatherDetails = (id: number | undefined) => {
+  return useQuery({
+    queryKey: ["details", id],
+    queryFn: () =>
+      id !== undefined ? weather.getWeatherDetails(id) : Promise.reject(new Error("Invalid ID")),
+    enabled: !!id,
+    retry: 1,
+    refetchOnWindowFocus: false,
+  })
+}

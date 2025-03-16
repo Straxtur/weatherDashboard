@@ -1,4 +1,4 @@
-import { WeatherDetailsProps, WeatherProps } from "../../types/api/weather"
+import { WeatherProps } from "../../types/api/weather"
 import { CustomError } from "../../types/errors/errors"
 import { WEATHER_KEY } from "../../utils/constants"
 import apiClient from "../apiClient"
@@ -28,7 +28,7 @@ const weather = {
 
   getWeatherAboutCity: async ({ locate }: WeatherProps) => {
     try {
-      const response = await apiClient.get(`/forecast.json`, {
+      const response = await apiClient.get(`/current.json`, {
         params: {
           key: WEATHER_KEY,
           q: locate,
@@ -49,15 +49,15 @@ const weather = {
     }
   },
 
-  getWeatherDetails: async ({ locate, days }: WeatherDetailsProps) => {
+  getWeatherDetails: async (id: number) => {
     try {
-      const response = await apiClient.get(`/current.json`, {
+      const response = await apiClient.get(`/forecast.json`, {
         params: {
           key: WEATHER_KEY,
-          q: locate,
+          q: `id:${id}`,
           aqi: false,
           lang: "es",
-          days: days,
+          days: 4,
         },
       })
       return response.data
@@ -65,7 +65,7 @@ const weather = {
       if (process.env.NODE_ENV === "development") {
         console.error("Weather API Error: ", {
           error: (error as CustomError)?.technicalMessage,
-          request: { locate, days },
+          request: { id },
           stack: error instanceof Error ? error.stack : null,
         })
       }
