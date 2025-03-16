@@ -9,7 +9,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <main
       id="layout"
-      className="grid h-screen w-full gap-4 overflow-x-hidden p-4 md:grid-cols-2"
+      className="grid h-screen w-full gap-4 overflow-x-hidden p-4 md:grid-cols-2 grid-rows-[100px_auto_100px]"
       style={{
         backgroundImage: `url(${bgImage})`,
       }}

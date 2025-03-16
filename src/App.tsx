@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Clock from "./components/shared/Clock"
 import Weather from "./components/weather/Weather"
 import WeatherChart from "./components/WeatherChart/WeatherChart"
 import WeatherList from "./components/WeatherList/WeatherList"
@@ -11,7 +12,7 @@ const App = () => {
   const [weathers, setWeathers] = useLocalStorage<WeatherUb[]>("weathersUb", [])
   const [selectedWeather, setSelectedWeather] = useState<number | undefined>()
 
-  const { error, data, isLoading } = useWeatherDetails(selectedWeather)
+  const { error, data } = useWeatherDetails(selectedWeather)
 
   if (error) {
     console.error(error)
@@ -24,6 +25,8 @@ const App = () => {
 
   return (
     <Layout>
+      <Clock />
+
       <Weather weathers={data} />
 
       <WeatherList
