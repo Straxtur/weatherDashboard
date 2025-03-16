@@ -5,7 +5,7 @@ interface Props {
 }
 
 const Layout: React.FC<Props> = ({ children }) => {
-  const bgImage = "bgImages/cyber-city.jpg"
+  const bgImage = "bgImages/cyber-city.webp"
   return (
     <main
       id="layout"
