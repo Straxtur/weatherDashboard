@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useCurrentWeather } from "../../context/WeatherContext"
 import { info, WeatherUb } from "../../types/api/weather"
 import CaretLeft from "../icons/CaretLeft"
 import CaretRight from "../icons/CaretRight"
@@ -22,7 +23,7 @@ interface forecast {
   }[]
 }
 
-interface WeatherProps {
+export interface WeatherProps {
   weathers: {
     current: info
     forecast: forecast
@@ -32,6 +33,12 @@ interface WeatherProps {
 
 const Weather = ({ weathers }: WeatherProps) => {
   const [weatherSelected, setWeatherSelected] = useState(0)
+  const { setCurrentWeather } = useCurrentWeather()
+
+  useEffect(() => {
+    setCurrentWeather(weathers?.forecast.forecastday[weatherSelected])
+    /*   setCurrentWeatherSelected(weathers[weatherSelected]) */
+  }, [weatherSelected, weathers])
 
   // Navegación circular
   const handlePrev = () => {
@@ -58,21 +65,21 @@ const Weather = ({ weathers }: WeatherProps) => {
           <div className="flex w-full items-center justify-between">
             <button
               onClick={() => handlePrev()}
-              className="cursor-pointer rounded-full text-2xl mx-2 text-white transition-transform duration-200 ease-in-out hover:scale-125 hover:bg-white/20 active:scale-90"
+              className="mx-2 cursor-pointer rounded-full text-2xl text-white transition-transform duration-200 ease-in-out hover:scale-125 hover:bg-white/20 active:scale-90"
             >
               <CaretLeft width="25px" height="25px" />
             </button>
 
             <div className="glass-card flex h-fit w-fit flex-col items-center justify-between gap-4 rounded-3xl px-2.5 py-3">
               <WeatherDetails details={weathers.forecast.forecastday[weatherSelected].day} />
-              <p className="text-xl text-white text-center">
+              <p className="text-center text-xl text-white">
                 {weathers.forecast.forecastday[weatherSelected].day.condition.text}
               </p>
             </div>
 
             <button
               onClick={() => handleNext()}
-              className="cursor-pointer rounded-full mx-2 text-2xl text-white transition-transform duration-200 ease-in-out hover:scale-125 hover:bg-white/20 active:scale-90"
+              className="mx-2 cursor-pointer rounded-full text-2xl text-white transition-transform duration-200 ease-in-out hover:scale-125 hover:bg-white/20 active:scale-90"
             >
               <CaretRight width="25px" height="25px" />
             </button>
