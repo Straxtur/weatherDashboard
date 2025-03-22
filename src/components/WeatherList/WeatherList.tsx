@@ -48,7 +48,7 @@ const WeatherList = ({ weathers, setWeathers, handledSelectWeather }: WeatherLis
   }
 
   return (
-    <section className="glass-card col-span-1 flex h-full flex-col items-start justify-start gap-4 p-3">
+    <section className="glass-card col-span-1 flex h-full min-h-[200px] flex-col items-start justify-start gap-4 p-3">
       <button
         onClick={() => handleOpenModal()}
         className="flex h-fit w-fit cursor-pointer items-center justify-start gap-2 p-2 transition-transform duration-200 ease-in-out hover:scale-105 active:scale-95"
