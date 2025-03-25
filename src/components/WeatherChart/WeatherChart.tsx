@@ -65,7 +65,7 @@ const WeatherChart = () => {
   const options = chartOptions({ weather })
 
   return (
-    <section className="glass-card h-[400px] w-[320px] rounded-3xl p-2.5 sm:w-full md:col-span-2">
+    <section className="glass-card h-[400px] w-[400px] rounded-3xl p-2.5 sm:w-full md:col-span-2">
       <Line data={data} options={options} />
     </section>
   )

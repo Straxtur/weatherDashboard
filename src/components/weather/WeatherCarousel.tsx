@@ -104,7 +104,7 @@ const WeatherCarousel: React.FC<Props> = ({ weathers, weatherSelected, setWeathe
           <div
             className={`bg-${classifyWeather(weather.day.condition.text)} flex h-[390px] flex-col items-center justify-center gap-4 rounded-3xl px-2`}
           >
-            <h2 className="text-4xl text-white">{location.name}</h2>
+            <h2 className="line-clamp-1 text-2xl text-white">{location.name}</h2>
             <h3 className="text-xl text-white">{formatearFecha(weather.date)}</h3>
             <img
               width="189px"
