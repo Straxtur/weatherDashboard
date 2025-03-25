@@ -1,54 +1,110 @@
-# React + TypeScript + Vite
+# Weather Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es un **dashboard del clima** que permite visualizar información meteorológica actual y pronósticos, utilizando una interfaz moderna y responsiva.
 
-Currently, two official plugins are available:
+## 🚀 Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Visualización del clima actual y pronósticos por hora y día.
+- Gráficos interactivos para mostrar datos meteorológicos.
+- Navegación entre ubicaciones y días de pronóstico.
+- Animaciones suaves y diseño con efecto de "glassmorphism".
+- Soporte para múltiples ubicaciones.
 
-## Expanding the ESLint configuration
+## 🛠️ Herramientas y Tecnologías Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **React**: Biblioteca principal para la construcción de la interfaz.
+- **TypeScript**: Tipado estático para mayor robustez y mantenimiento.
+- **TailwindCSS**: Framework CSS para estilos rápidos y responsivos.
+- **Chart.js**: Librería para gráficos interactivos.
+- **React-Chartjs-2**: Wrapper para integrar Chart.js con React.
+- **Motion**: Animaciones suaves y personalizables.
+- **Context API**: Manejo de estado global para compartir datos meteorológicos.
+- **Vite**: Herramienta de construcción rápida para proyectos React.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## ⚙️ Instalación
+
+Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local:
+
+1. **Clona el repositorio**:
+
+   ```bash
+   git clone https://github.com/tu-usuario/weather-dashboard.git
+   cd weather-dashboard
+   ```
+
+2. **Instala las dependencias**:
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Configura las variables de entorno**:
+   Crea un archivo `.env` en la raíz del proyecto y añade tu clave de API para el servicio meteorológico:
+
+   ```
+   VITE_WEATHER_API_KEY=tu_clave_api
+   VITE_WEATHER_BASE_URL="https://api.weatherapi.com/v1"
+   ```
+
+4. **Inicia el servidor de desarrollo**:
+
+   ```bash
+   pnpm dev
+   ```
+
+5. **Abre el proyecto en tu navegador**:
+   Ve a [http://localhost:5173](http://localhost:5173).
+
+## 🧩 Estructura del Proyecto
+
+```
+src/
+├── components/       # Componentes reutilizables
+│   ├── WeatherList/  # Lista de ubicaciones y tarjetas del clima
+│   ├── WeatherChart/ # Gráficos meteorológicos
+│   ├── shared/       # Componentes compartidos (Modal, Clock, etc.)
+├── context/          # Context API para manejo de estado global
+├── services/         # Consultas a la API del clima
+├── types/            # Definiciones de tipos TypeScript
+├── utils/            # Funciones auxiliares (formateo, helpers, etc.)
+└── main.css          # Estilos globales
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛡️ Cómo Funciona el Proyecto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Consulta de datos meteorológicos**:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+   - El proyecto utiliza una API externa para obtener datos del clima.
+   - Los datos se almacenan en el estado global mediante Context API.
+
+2. **Visualización de datos**:
+
+   - Los datos se muestran en componentes como `WeatherList`, `WeatherCard` y `WeatherChart`.
+   - Los gráficos interactivos permiten explorar los datos de manera visual.
+
+3. **Interacción del usuario**:
+   - Los usuarios pueden agregar ubicaciones, navegar entre días de pronóstico y ver detalles específicos del clima.
+
+## 📦 Despliegue
+
+Para construir el proyecto para producción, ejecuta:
+
+```bash
+pnpm build
 ```
+
+Esto generará una carpeta `dist/` con los archivos optimizados para producción.
+
+## 📚 Recursos Adicionales
+
+- [Documentación de React](https://reactjs.org/)
+- [Documentación de TailwindCSS](https://tailwindcss.com/)
+- [Documentación de Chart.js](https://www.chartjs.org/)
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+
+---
+
+**Desarrollado con ❤️ por Straxtur**
