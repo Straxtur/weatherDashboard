@@ -24,6 +24,7 @@ export const useWeather = (locations: WeatherUb[]) => {
       enabled: locations.length > 0,
       retry: 1,
       refetchOnWindowFocus: false,
+      refetchInterval: 60000, // Actualiza cada 10 min
     })),
     combine: (results) => {
       return {
@@ -45,5 +46,6 @@ export const useWeatherDetails = (id: number | undefined) => {
     enabled: !!id,
     retry: 1,
     refetchOnWindowFocus: false,
+    refetchInterval: 60000, // Actualiza cada 10 min
   })
 }
